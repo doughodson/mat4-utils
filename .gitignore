@@ -1,0 +1,38 @@
+# vs directories
+build/obj/
+vs2017/
+.vscode/
+
+# keep premake
+!premake*.*
+
+# vs runtime libs
+concrt*.dll
+msvcp*.dll
+vcamp*.dll
+vccorlib*.dll
+vcomp*.dll
+vcruntime*.dll
+
+# kde plasma 5 files
+.directory
+
+*.gch
+
+# vs compiler generated files
+*.idb
+*.ilk
+*.pdb
+
+#
+# eclipse files (for now)
+#
+.cproject
+.project
+.settings/
+
+# compiled object files
+*.[oa]
+
+# backup files
+*.bak
