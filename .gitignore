@@ -1,6 +1,7 @@
 # vs directories
 build/obj/
 vs2017/
+gmake/
 .vscode/
 
 # keep premake
@@ -36,3 +37,7 @@ vcruntime*.dll
 
 # backup files
 *.bak
+
+bin/describe
+bin/writer
+

@@ -3,7 +3,8 @@
 -- If premake command is not supplied an action (target compiler), exit!
 --
 -- Targets of interest:
---     vs2017     (Visual Studio 2017)
+--     vs2017     Visual Studio 2017
+--     gmake      Linux
 --
 if (_ACTION == nil) then
     return
@@ -31,15 +32,19 @@ workspace "mat4-utils"
    -- common release configuration flags and symbols
    filter { "configurations:Release" }
       optimize "On"
-      -- favor speed over size
-      buildoptions { "/Ot" }
-      defines { "WIN32", "NDEBUG" }
+      if (_ACTION ~= "gmake") then
+         -- favor speed over size
+         buildoptions { "/Ot" }
+         defines { "WIN32", "NDEBUG" }
+      end
 
    -- common debug configuration flags and symbols
    filter { "configurations:Debug" }
       symbols "On"
-      -- enable compiler intrinsics
-      defines { "WIN32", "_DEBUG" }
+      if (_ACTION ~= "gmake") then
+         -- enable compiler intrinsics
+         defines { "WIN32", "_DEBUG" }
+      end
 
    -- describe
    project "describe"
