@@ -1,13 +1,15 @@
+
 #include <stdio.h>
+#include <cstdint>
 
 int main()
 {
    typedef struct {
-      long type;
-      long mrows;
-      long ncols;
-      long imagf;
-      long namelen;
+      int32_t type;
+      int32_t mrows;
+      int32_t ncols;
+      int32_t imagf;
+      int32_t namelen;
    } Fmatrix;
 
    char* pname;
@@ -19,7 +21,7 @@ int main()
    double real_data = 1.0;
    double imag_data = 2.0;
 
-   fp = fopen("mymatfile.mat", "wb");
+   fp = fopen("test.mat", "wb");
    if (fp != NULL) {
       pname = "x";
       x.type = 1000;
@@ -44,5 +46,3 @@ int main()
    fclose(fp);
    return 0;
 }
-
-

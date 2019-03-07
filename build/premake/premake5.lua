@@ -19,8 +19,8 @@ workspace "mat4-utils"
 
    kind "ConsoleApp"
 
-   -- C code in all projects
-   language "C"
+   -- C++ code in all projects
+   language "C++"
 
    --
    -- Build (solution) configuration options:
@@ -49,13 +49,13 @@ workspace "mat4-utils"
    -- describe
    project "describe"
       files {
-         "../../src/describe.c"
+         "../../src/describe.cpp"
       }
       targetname "describe"
 
       -- writer
       project "writer"
          files {
-            "../../src/writer.c"
+            "../../src/writer.cpp"
          }
          targetname "writer"
