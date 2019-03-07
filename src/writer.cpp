@@ -1,47 +1,46 @@
 
-#include <stdio.h>
+#include <iostream>
+#include <filesystem>
+#include <string>
 #include <cstdint>
 
-int main()
+#include <stdio.h>
+
+typedef struct {
+   int32_t type;     // type of data - how it's stored
+   int32_t mrows;    // # of rows
+   int32_t ncols;    // # of columns
+   int32_t imagf;    // imaginary value
+   int32_t namelen;  // length of variable name + 1
+} MAT4Header;
+
+int main(int argc, char** argv)
 {
-   typedef struct {
-      int32_t type;
-      int32_t mrows;
-      int32_t ncols;
-      int32_t imagf;
-      int32_t namelen;
-   } Fmatrix;
+   std::cout << "Num of args : " << argc << std::endl;
 
-   char* pname;
-   double* pr;
-   double* pi;
-   Fmatrix x;
-   int mn;
-   FILE* fp;
-   double real_data = 1.0;
-   double imag_data = 2.0;
+   FILE* fp{fopen("test.mat", "wb")};
+   if (fp) {
 
-   fp = fopen("test.mat", "wb");
-   if (fp != NULL) {
-      pname = "x";
-      x.type = 1000;
-      x.mrows = 1;
-      x.ncols = 1;
-      x.imagf = 1;
-      x.namelen = 2;
+      // define and write matrix header information
+      MAT4Header x{1000,1,1,1,2};
+      fwrite(&x, sizeof(MAT4Header), 1, fp);
 
-      pr = &real_data;
-      pi = &imag_data;
-
-      fwrite(&x, sizeof(Fmatrix), 1, fp);
+      // variable name
+      const char* pname{"x"};
       fwrite(pname, sizeof(char), x.namelen, fp);
-      mn = x.mrows *x.ncols;
-      fwrite(pr, sizeof(double), mn, fp);
 
-      if (x.imagf)
-         fwrite(pi, sizeof(double), mn, fp);
-   } else
-      printf("File could not be opened.\n");
+      // matrix data
+      const double real_data{1.0};
+      const double imag_data{2.0};
+      const int mn{x.mrows * x.ncols};
+      fwrite(&real_data, sizeof(double), mn, fp);          // write real value(s)
+      if (x.imagf) {
+         fwrite(&imag_data, sizeof(double), mn, fp);       // write imaginary value(s)
+      }
+
+   } else {
+      std::cout << "File could not be opened.\n";
+   }
 
    fclose(fp);
    return 0;
