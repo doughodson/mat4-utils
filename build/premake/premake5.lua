@@ -52,3 +52,10 @@ workspace "mat4-utils"
          "../../src/describe.c"
       }
       targetname "describe"
+
+      -- writer
+      project "writer"
+         files {
+            "../../src/writer.c"
+         }
+         targetname "writer"

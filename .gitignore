@@ -25,6 +25,9 @@ vcruntime*.dll
 *.ilk
 *.pdb
 
+# mat files
+*.mat
+
 #
 # eclipse files (for now)
 #
@@ -40,4 +43,3 @@ vcruntime*.dll
 
 bin/describe
 bin/writer
-
