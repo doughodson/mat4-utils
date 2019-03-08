@@ -31,7 +31,7 @@ workspace "mat4-utils"
 
    if (_ACTION == "gmake") then
       buildoptions { "-std=c++17" }
-      links { "stdc++fs" }
+      links { "stdc++fs", "pthread" }
    end
 
    -- common release configuration flags and symbols
