@@ -42,4 +42,6 @@ vcruntime*.dll
 *.bak
 
 bin/describe
+bin/describe.exe
 bin/writer
+bin/writer.exe

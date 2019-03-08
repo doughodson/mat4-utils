@@ -29,6 +29,11 @@ workspace "mat4-utils"
    --
    configurations { "Release", "Debug" }
 
+   if (_ACTION == "gmake") then
+      buildoptions { "-std=c++17" }
+      links { "stdc++fs" }
+   end
+
    -- common release configuration flags and symbols
    filter { "configurations:Release" }
       optimize "On"
@@ -36,9 +41,6 @@ workspace "mat4-utils"
          -- favor speed over size
          buildoptions { "/Ot" }
          defines { "WIN32", "NDEBUG" }
-      elseif (_ACTION == "gmake") then
-         buildoptions { "-std=c++17" }
-         links { "stdc++fs" }
       end
 
    -- common debug configuration flags and symbols
@@ -47,9 +49,6 @@ workspace "mat4-utils"
       if (_ACTION ~= "gmake") then
          -- enable compiler intrinsics
          defines { "WIN32", "_DEBUG" }
-      elseif (_ACTION == "gmake") then
-         buildoptions { "-std=c++17" }
-         links { "stdc++fs" }
       end
 
 -- describe
