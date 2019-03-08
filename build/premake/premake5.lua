@@ -36,6 +36,9 @@ workspace "mat4-utils"
          -- favor speed over size
          buildoptions { "/Ot" }
          defines { "WIN32", "NDEBUG" }
+      elseif (_ACTION == "gmake") then
+         buildoptions { "-std=c++17" }
+         links { "stdc++fs" }
       end
 
    -- common debug configuration flags and symbols
@@ -44,18 +47,21 @@ workspace "mat4-utils"
       if (_ACTION ~= "gmake") then
          -- enable compiler intrinsics
          defines { "WIN32", "_DEBUG" }
+      elseif (_ACTION == "gmake") then
+         buildoptions { "-std=c++17" }
+         links { "stdc++fs" }
       end
 
-   -- describe
-   project "describe"
-      files {
-         "../../src/describe.cpp"
-      }
-      targetname "describe"
+-- describe
+project "describe"
+   files {
+      "../../src/describe.cpp"
+   }
+   targetname "describe"
 
-      -- writer
-      project "writer"
-         files {
-            "../../src/writer.cpp"
-         }
-         targetname "writer"
+-- writer
+project "writer"
+   files {
+      "../../src/writer.cpp"
+   }
+   targetname "writer"
