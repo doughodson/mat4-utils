@@ -1,13 +1,9 @@
 
 #include <iostream>
-#include <filesystem>
 #include <string>
 #include <cstdint>
 
 #include <stdio.h>
-
-namespace fs = std::filesystem;
-//namespace fs = std::experimental::filesystem::v1;   // visual studio
 
 typedef struct {
    int32_t type;     // type of data - how it's stored
@@ -24,23 +20,15 @@ int main(int argc, char** argv)
    std::cout << "argv[0] : " << argv[0] << std::endl;
    if (argc > 1) {
       std::cout << "argv[1] : " << argv[1] << std::endl;
-      fs::path filename{argv[1]};
-
-      std::cout << "exists() = " << fs::exists(filename) << "\n"
-           << "root_name() = " << filename.root_name() << "\n"
-           << "root_path() = " << filename.root_path() << "\n"
-           << "relative_path() = " << filename.relative_path() << "\n"
-           << "parent_path() = " << filename.parent_path() << "\n"
-           << "filename() = " << filename.filename() << "\n"
-           << "stem() = " << filename.stem() << "\n"
-           << "extension() = " << filename.extension() << "\n";
+   } else {
+      std::cout << "writer filename\n";
    }
 
-   FILE* fp{fopen("test.mat", "wb")};
+   FILE* fp{fopen(argv[1], "wb")};
    if (fp) {
 
       // define and write matrix header information
-      MAT4Header x{1000,1,1,1,2};
+      MAT4Header x{0000,1,1,1,2};
       fwrite(&x, sizeof(MAT4Header), 1, fp);
 
       // variable name
