@@ -47,7 +47,6 @@ workspace "mat4-utils"
    filter { "configurations:Debug" }
       symbols "On"
       if (_ACTION ~= "gmake") then
-         -- enable compiler intrinsics
          defines { "WIN32", "_DEBUG" }
       end
 

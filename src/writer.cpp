@@ -7,7 +7,7 @@
 #include <stdio.h>
 
 namespace fs = std::filesystem;
-//namespace fs = std::experimental::filesystem::v1;
+//namespace fs = std::experimental::filesystem::v1;   // visual studio
 
 typedef struct {
    int32_t type;     // type of data - how it's stored
