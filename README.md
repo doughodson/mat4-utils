@@ -1,2 +1,3 @@
 # mat4-utils
-Some basic utility apps to read/write MATLAB version 4 files
+Some utilities to create, read and write MATLAB version 4 files
+
