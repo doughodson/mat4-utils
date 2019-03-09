@@ -1,7 +1,7 @@
 
-/*
- * Print contents of matlab version 4 header file
-*/
+//-------------------------------------------------------
+// print contents of matlab version 4 header file
+//-------------------------------------------------------
 
 #include <iostream>
 #include <cstdint>
@@ -9,13 +9,7 @@
 
 #include <stdio.h>
 
-typedef struct {
-   int32_t type;
-   int32_t mrows;
-   int32_t ncols;
-   int32_t imagf;
-   int32_t namelen;
-} MAT4Header;
+#include "utils.hpp"
 
 int main()
 {

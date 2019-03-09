@@ -53,7 +53,8 @@ workspace "mat4-utils"
 -- describe
 project "describe"
    files {
-      "../../src/describe.cpp"
+      "../../src/describe.cpp",
+      "../../src/utils.*"
    }
    targetname "describe"
 
