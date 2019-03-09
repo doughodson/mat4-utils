@@ -9,8 +9,6 @@
 #include <cstdint>
 #include <bitset>
 
-#include <stdio.h>
-
 #include "utils.hpp"
 #include "swap_bytes.hpp"
 
@@ -26,18 +24,18 @@ int main(int argc, char* argv[])
       std::exit(0);
    }
 
-   std::ifstream is;
-   is.open(argv[1]);
-   if (is.fail()) {
+   std::ifstream ifs;
+   ifs.open(argv[1], std::ifstream::binary);
+   if (ifs.fail()) {
       std::cout << "can't read <filename>\n";
    }
 
    MAT4Header header{};
-   is.read(reinterpret_cast<char*>(&header.mopt), 4);
-   is.read(reinterpret_cast<char*>(&header.nrows), 4);
-   is.read(reinterpret_cast<char*>(&header.ncols), 4);
-   is.read(reinterpret_cast<char*>(&header.imagf), 4);
-   is.read(reinterpret_cast<char*>(&header.namelen), 4);
+   ifs.read(reinterpret_cast<char*>(&header.mopt), sizeof(header.mopt));
+   ifs.read(reinterpret_cast<char*>(&header.nrows), sizeof(header.nrows));
+   ifs.read(reinterpret_cast<char*>(&header.ncols), sizeof(header.ncols));
+   ifs.read(reinterpret_cast<char*>(&header.imagf), sizeof(header.imagf));
+   ifs.read(reinterpret_cast<char*>(&header.namelen), sizeof(header.namelen));
 
    bool swap{};
    if (header.mopt > 9999 || header.mopt < 0) {
@@ -61,6 +59,6 @@ int main(int argc, char* argv[])
    std::cout << "imagf   (dec) : " << header.imagf   << std::endl;
    std::cout << "namelen (dec) : " << header.namelen << std::endl;
 
-   is.close();
+   ifs.close();
    return 0;
 }

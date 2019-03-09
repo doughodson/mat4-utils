@@ -61,6 +61,7 @@ project "describe"
 -- writer
 project "writer"
    files {
-      "../../src/writer.cpp"
+      "../../src/writer.cpp",
+      "../../src/utils.*"
    }
    targetname "writer"
