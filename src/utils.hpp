@@ -6,8 +6,8 @@
 #include <cstdint>
 
 typedef struct {
-   int32_t type;
-   int32_t mrows;
+   int32_t mopt;
+   int32_t nrows;
    int32_t ncols;
    int32_t imagf;
    int32_t namelen;
@@ -17,4 +17,3 @@ int read_mat_file_header(std::istream& is, bool& swap, MAT4Header& header);
 
 
 #endif
-

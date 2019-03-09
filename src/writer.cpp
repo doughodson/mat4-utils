@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <cstdlib>
 #include <string>
 #include <cstdint>
 
@@ -22,6 +23,7 @@ int main(int argc, char** argv)
       std::cout << "argv[1] : " << argv[1] << std::endl;
    } else {
       std::cout << "writer filename\n";
+      std::exit(0);
    }
 
    FILE* fp{fopen(argv[1], "wb")};
